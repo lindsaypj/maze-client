@@ -1,0 +1,50 @@
+.generation-form {
+  display: flex;
+  font-size: 1.5rem;
+}
+
+.generation-form .input-group {
+  display: inline;
+}
+
+.generation-form input {
+  font-size: 1.5rem;
+  width: 5rem;
+}
+
+.generation-form .input-group label {
+  display: block;
+}
+
+.generation-form .icon-wrapper {
+  display: flex;
+}
+.generation-form .x-icon {
+  margin-inline: 1rem;
+  font-size: 1.5rem;
+  align-self: flex-end;
+}
+
+.generation-form button {
+  height: fit-content;
+  align-self: flex-end;
+  
+  padding: 0.5rem;
+  margin-inline: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-shadow: 0.1rem 0.1rem 0.2rem 0.2rem #00000050;
+}
+
+.generation-form button:hover {
+  background-color: gray;
+  box-shadow: none;
+
+  transition: all 0.1s ease-out;
+}
+.generation-form button:active {
+  background-color: #61dafb !important  ;
+  box-shadow: none;
+}
