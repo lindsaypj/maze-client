@@ -1,4 +1,5 @@
-import './App.css';
+import GenerationForm from './components/GenerationForm';
+import './styles/App.css';
 
 function App() {
   return (
@@ -6,6 +7,8 @@ function App() {
       <header className="App-header">
         <h1>Maze Generator</h1>
       </header>
+
+      <GenerationForm />
     </div>
   );
 }
