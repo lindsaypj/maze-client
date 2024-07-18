@@ -33,6 +33,11 @@
   max-width: 80vh;
   max-height: 80vw;
 }
+@media screen and (min-aspect-ratio: 4/3) {
+  .maze {
+    margin-inline: auto;
+  }
+}
 
 .maze-row {
   display: flex;

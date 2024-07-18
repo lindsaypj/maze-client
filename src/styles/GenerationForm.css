@@ -1,6 +1,6 @@
 .generation-form {
   display: flex;
-  font-size: 1.5rem;
+  font-size: clamp(0.8rem, 2rem, 4vw);
 }
 
 .generation-form .input-group {
@@ -8,8 +8,8 @@
 }
 
 .generation-form input {
-  font-size: 1.5rem;
-  width: 5rem;
+  font-size: clamp(0.8rem, 2rem, 4vw);
+  width: clamp(3rem, 10vw, 10rem);
 }
 
 .generation-form .input-group label {
@@ -21,7 +21,7 @@
 }
 .generation-form .x-icon {
   margin-inline: 1rem;
-  font-size: 1.5rem;
+  font-size: clamp(0.8rem, 2rem, 4vw);
   align-self: flex-end;
 }
 
@@ -33,7 +33,7 @@
   margin-inline: 1rem;
   border-radius: 0.5rem;
   border: none;
-  font-size: 1.5rem;
+  font-size: clamp(0.8rem, 2rem, 4vw);
   font-weight: 600;
   box-shadow: 0.1rem 0.1rem 0.2rem 0.2rem #00000050;
 }

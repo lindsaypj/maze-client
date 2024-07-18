@@ -18,17 +18,17 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="info-container">
         <h1 className='d-inline'>Maze Generator</h1>
+        <GenerationForm handleLoadingNewMaze={handleLoadingNewMaze} />
       </header>
-
-      <GenerationForm handleLoadingNewMaze={handleLoadingNewMaze} />
-      
-      <Maze
-        mazeHeight={mazeHeight}
-        mazeWidth={mazeWidth}
-        initMaze={initMaze}
-      />
+      <div className='maze-container'>
+        <Maze
+          mazeHeight={mazeHeight}
+          mazeWidth={mazeWidth}
+          initMaze={initMaze}
+        />
+      </div>
     </div>
   );
 }
