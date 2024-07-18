@@ -1,0 +1,44 @@
+:root {
+  --border-width: 1px;
+  --negative-border-width: -1px;
+}
+
+.maze {
+  border: var(--border-width) white solid;
+  padding: var(--border-width);
+  margin-block: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  max-width: 80vh;
+  max-height: 80vw;
+}
+
+.maze-row {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.maze-cell {
+  display: inline-block;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.cell-n {
+  border-top: var(--border-width) white solid;
+  margin-top: var(--negative-border-width);
+}
+.cell-e {
+  border-right: var(--border-width) white solid;
+  margin-right: var(--negative-border-width);
+}
+.cell-s {
+  border-bottom: var(--border-width) white solid;
+  margin-bottom: var(--negative-border-width);
+}
+.cell-w {
+  border-left: var(--border-width) white solid;
+  margin-left: var(--negative-border-width);
+}

@@ -3,6 +3,7 @@
   padding-inline: 5rem;
   color: white;
   min-height: 100vh;
+  padding-bottom: 5rem;
 }
 .App-header {
   display: flex;
