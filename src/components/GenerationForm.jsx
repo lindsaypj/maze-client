@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 
-import '../styles/GenerationForm.css';
 import { clamp } from "../scripts/utils";
-import TEST_MAZE from "../test-data/testMaze10x10.json";
+import { generateMazeRequest } from "../scripts/requests";
+
+import '../styles/GenerationForm.css';
+
 
 const DEFAULT_MAZE_DIMENSION = 5;
 const MIN_MAZE_DIMENSION = 4;
 const MAX_MAZE_DIMENSION = 100;
 
 
-export default function GenerationForm({ handleLoadingNewMaze }) {
+export default function GenerationForm({ handleLoadingNewMaze, solveMazeCallback }) {
   const [mazeHeightInput, setMazeHeightInput] = useState(DEFAULT_MAZE_DIMENSION);
   const [mazeWidthInput, setMazeWidthInput] = useState(DEFAULT_MAZE_DIMENSION);
 
@@ -19,26 +21,13 @@ export default function GenerationForm({ handleLoadingNewMaze }) {
     setMazeWidthInput(nextSize);
   }
 
-  const generateMazeRequest = () => {
+  const generateMaze = () => {
     const requestHeight = clamp(MIN_MAZE_DIMENSION, MAX_MAZE_DIMENSION, mazeHeightInput);
     setMazeHeightInput(requestHeight);
     const requestWidth = clamp(MIN_MAZE_DIMENSION, MAX_MAZE_DIMENSION, mazeWidthInput);
     setMazeWidthInput(requestWidth);
 
-    // THEN: call handleLoadingNewMaze(), passing maze data
-    // handleLoadingNewMaze(10, 10, TEST_MAZE);
-
-    // TODO: UPDATE FOR DEPLOYMENT
-    const loginURI = "http://localhost:8000/maze/"+requestWidth+"x"+requestHeight;
-    const params = {
-      method: "get",
-      mode: "cors", // TODO: REMOVE FOR DEPLOYMENT
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }
-
-    fetch(loginURI, params)
+    generateMazeRequest(requestWidth, requestHeight)
       .then(function (response) {
         if (response.ok) {
           return response.json();
@@ -49,42 +38,46 @@ export default function GenerationForm({ handleLoadingNewMaze }) {
       })
       .then(function (mazeData) {
         handleLoadingNewMaze(requestWidth, requestHeight, mazeData);
-        console.log(mazeData)
       })
   }
 
   return (
     <form className="generation-form" onSubmit={(event) => {event.preventDefault()}}>
-      <div className="input-group">
-        <label htmlFor="input-maze-width">Width: </label>
-        <input
-          id="input-maze-width"
-          type="number"
-          value={mazeWidthInput}
-          min={MIN_MAZE_DIMENSION}
-          max={MAX_MAZE_DIMENSION}
-          onChange={handleInputChange}
-          onBlur={handleInputChange}
-        />
-      </div>
+      <div className="dimensions">
+        <div className="input-group">
+          <label htmlFor="input-maze-width">Width: </label>
+          <input
+            id="input-maze-width"
+            type="number"
+            value={mazeWidthInput}
+            min={MIN_MAZE_DIMENSION}
+            max={MAX_MAZE_DIMENSION}
+            onChange={handleInputChange}
+            onBlur={handleInputChange}
+          />
+        </div>
 
-      <div className="icon-wrapper">
-        <span className="x-icon">X</span>
+        <div className="icon-wrapper">
+          <span className="x-icon">X</span>
+        </div>
+        
+        <div className="input-group">
+          <label htmlFor="input-maze-height">Height: </label>
+          <input
+            id="input-maze-height"
+            type="number"
+            value={mazeHeightInput}
+            min={MIN_MAZE_DIMENSION}
+            max={MAX_MAZE_DIMENSION}
+            onChange={handleInputChange}
+            onBlur={handleInputChange}
+          />
+        </div>
       </div>
-      
-      <div className="input-group">
-        <label htmlFor="input-maze-height">Height: </label>
-        <input
-          id="input-maze-height"
-          type="number"
-          value={mazeHeightInput}
-          min={MIN_MAZE_DIMENSION}
-          max={MAX_MAZE_DIMENSION}
-          onChange={handleInputChange}
-          onBlur={handleInputChange}
-        />
+      <div className="button-group">
+        <button role="button" onClick={generateMaze}>Generate</button>
+        <button role="button" onClick={solveMazeCallback}>Solve</button>
       </div>
-      <button role="button" onClick={generateMazeRequest}>Generate!</button>
     </form>
   )
 }
