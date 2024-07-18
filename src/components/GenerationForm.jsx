@@ -13,6 +13,12 @@ export default function GenerationForm({ handleLoadingNewMaze }) {
   const [mazeHeightInput, setMazeHeightInput] = useState(DEFAULT_MAZE_DIMENSION);
   const [mazeWidthInput, setMazeWidthInput] = useState(DEFAULT_MAZE_DIMENSION);
 
+  const handleInputChange = (event) => {
+    const nextSize = clamp(MIN_MAZE_DIMENSION, MAX_MAZE_DIMENSION, event.target.value);
+    setMazeHeightInput(nextSize);
+    setMazeWidthInput(nextSize);
+  }
+
   const generateMazeRequest = () => {
     const requestHeight = clamp(MIN_MAZE_DIMENSION, MAX_MAZE_DIMENSION, mazeHeightInput);
     setMazeHeightInput(requestHeight);
@@ -34,7 +40,8 @@ export default function GenerationForm({ handleLoadingNewMaze }) {
           value={mazeWidthInput}
           min={MIN_MAZE_DIMENSION}
           max={MAX_MAZE_DIMENSION}
-          onChange={(event) => {setMazeWidthInput(event.target.value)}}
+          onChange={handleInputChange}
+          onBlur={handleInputChange}
         />
       </div>
 
@@ -50,7 +57,8 @@ export default function GenerationForm({ handleLoadingNewMaze }) {
           value={mazeHeightInput}
           min={MIN_MAZE_DIMENSION}
           max={MAX_MAZE_DIMENSION}
-          onChange={(event) => {setMazeHeightInput(event.target.value)}}
+          onChange={handleInputChange}
+          onBlur={handleInputChange}
         />
       </div>
       <button role="button" onClick={generateMazeRequest}>Generate!</button>
