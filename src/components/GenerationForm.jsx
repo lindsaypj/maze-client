@@ -75,8 +75,8 @@ export default function GenerationForm({ handleLoadingNewMaze, solveMazeCallback
         </div>
       </div>
       <div className="button-group">
-        <button role="button" onClick={generateMaze}>Generate</button>
-        <button role="button" onClick={solveMazeCallback}>Solve</button>
+        <button onClick={generateMaze}>Generate</button>
+        <button onClick={solveMazeCallback}>Solve</button>
       </div>
     </form>
   )

@@ -10,8 +10,16 @@ const CELL_WALLS = ['cell-n', 'cell-e', 'cell-s', 'cell-w'];
 export default function Maze({ mazeWidth, mazeHeight, initMaze, mazePath, solved }) {
   const windowSize = useWindowSize();
 
-
-  ////   RENDERING   ////
+  const getCellStyles = useCallback((pathArray, index) => {
+    const classes = [...CELL_WALLS];
+    for (let i = pathArray.length - 1; i >= 0; i--) {
+      classes.splice(pathArray[i], 1);
+    }
+    if (solved && mazePath.includes(index)) {
+      classes.push('cell-traveled');
+    }
+    return classes.join(' ');
+  }, [solved, mazePath]);
 
   const getMazeRows = useCallback(() => {
     const rows = [];
@@ -30,18 +38,7 @@ export default function Maze({ mazeWidth, mazeHeight, initMaze, mazePath, solved
       )
     }
     return rows;
-  }, [mazeHeight, mazeWidth, initMaze, solved]);
-
-  const getCellStyles = (pathArray, index) => {
-    const classes = [...CELL_WALLS];
-    for (let i = pathArray.length - 1; i >= 0; i--) {
-      classes.splice(pathArray[i], 1);
-    }
-    if (solved && mazePath.includes(index)) {
-      classes.push('cell-traveled');
-    }
-    return classes.join(' ');
-  }
+  }, [mazeHeight, mazeWidth, initMaze, getCellStyles]);
 
   const calculateBorderSize = useCallback(() => {
     const maxDimension = Math.max(mazeHeight, mazeWidth);
