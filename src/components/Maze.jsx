@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback } from "react";
 import useWindowSize from "../hooks/useWindowSize";
 
 import "../styles/Maze.css";
@@ -9,7 +9,6 @@ const CELL_WALLS = ['cell-n', 'cell-e', 'cell-s', 'cell-w'];
 
 export default function Maze({ mazeWidth, mazeHeight, initMaze }) {
   const windowSize = useWindowSize();
-  const mazeRef = useRef();
 
 
   ////   RENDERING   ////
@@ -44,9 +43,7 @@ export default function Maze({ mazeWidth, mazeHeight, initMaze }) {
   const calculateBorderSize = useCallback(() => {
     const maxDimension = Math.max(mazeHeight, mazeWidth);
     const minScreenDimension = Math.min(windowSize.width, windowSize.height);
-
     const borderSize = (minScreenDimension * 0.8) / 8 / maxDimension;
-    console.log(borderSize)
 
     if (borderSize < 5) {
       return " border-1";
@@ -63,7 +60,7 @@ export default function Maze({ mazeWidth, mazeHeight, initMaze }) {
   }, [mazeHeight, mazeWidth, windowSize]);
 
   return (
-    <div ref={mazeRef} className={"maze" + calculateBorderSize()}>
+    <div className={"maze" + calculateBorderSize()}>
       {getMazeRows()}
     </div>
   )
