@@ -25,9 +25,32 @@ export default function GenerationForm({ handleLoadingNewMaze }) {
     const requestWidth = clamp(MIN_MAZE_DIMENSION, MAX_MAZE_DIMENSION, mazeWidthInput);
     setMazeWidthInput(requestWidth);
 
-    // TODO: Fetch maze with dimensions
     // THEN: call handleLoadingNewMaze(), passing maze data
-    handleLoadingNewMaze(10, 10, TEST_MAZE);
+    // handleLoadingNewMaze(10, 10, TEST_MAZE);
+
+    // TODO: UPDATE FOR DEPLOYMENT
+    const loginURI = "http://localhost:8000/maze/"+requestWidth+"x"+requestHeight;
+    const params = {
+      method: "get",
+      mode: "cors", // TODO: REMOVE FOR DEPLOYMENT
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+
+    fetch(loginURI, params)
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        }
+        else {
+          console.log(response);
+        }
+      })
+      .then(function (mazeData) {
+        handleLoadingNewMaze(requestWidth, requestHeight, mazeData);
+        console.log(mazeData)
+      })
   }
 
   return (
