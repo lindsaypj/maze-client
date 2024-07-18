@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: column;
 }
-@media screen and (min-aspect-ratio: 4/3) {
+@media screen and (min-aspect-ratio: 5/4) {
   .maze {
     margin-inline: auto;
     max-width: 80vh;
@@ -48,6 +48,7 @@
   display: inline-block;
   width: 100%;
   aspect-ratio: 1;
+  z-index: 1;
 }
 
 .cell-n {
@@ -65,4 +66,9 @@
 .cell-w {
   border-left: var(--border-width) white solid;
   margin-left: var(--negative-border-width);
+}
+
+.cell-traveled {
+  background-color: #61dafb;
+  z-index: 0;
 }

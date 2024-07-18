@@ -7,7 +7,7 @@ import "../styles/Maze.css";
 // Constants
 const CELL_WALLS = ['cell-n', 'cell-e', 'cell-s', 'cell-w'];
 
-export default function Maze({ mazeWidth, mazeHeight, initMaze }) {
+export default function Maze({ mazeWidth, mazeHeight, initMaze, mazePath, solved }) {
   const windowSize = useWindowSize();
 
 
@@ -20,7 +20,7 @@ export default function Maze({ mazeWidth, mazeHeight, initMaze }) {
       for (let j = 0; j < mazeWidth; j++) {
         const index = i * mazeWidth + j;
         nextRow.push(
-          <div className={"maze-cell " + getCellStyles(initMaze[index])} key={index}></div>
+          <div className={"maze-cell " + getCellStyles(initMaze[index], index)} key={index}></div>
         )
       }
       rows.push(
@@ -30,12 +30,15 @@ export default function Maze({ mazeWidth, mazeHeight, initMaze }) {
       )
     }
     return rows;
-  }, [mazeHeight, mazeWidth, initMaze]);
+  }, [mazeHeight, mazeWidth, initMaze, solved]);
 
-  const getCellStyles = (pathArray) => {
+  const getCellStyles = (pathArray, index) => {
     const classes = [...CELL_WALLS];
     for (let i = pathArray.length - 1; i >= 0; i--) {
       classes.splice(pathArray[i], 1);
+    }
+    if (solved && mazePath.includes(index)) {
+      classes.push('cell-traveled');
     }
     return classes.join(' ');
   }
