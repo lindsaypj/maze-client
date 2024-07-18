@@ -1,11 +1,15 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
+import useWindowSize from "../hooks/useWindowSize";
 
 import "../styles/Maze.css";
+
 
 // Constants
 const CELL_WALLS = ['cell-n', 'cell-e', 'cell-s', 'cell-w'];
 
 export default function Maze({ mazeWidth, mazeHeight, initMaze }) {
+  const windowSize = useWindowSize();
+  const mazeRef = useRef();
 
 
   ////   RENDERING   ////
@@ -27,7 +31,7 @@ export default function Maze({ mazeWidth, mazeHeight, initMaze }) {
       )
     }
     return rows;
-  }, [initMaze]);
+  }, [mazeHeight, mazeWidth, initMaze]);
 
   const getCellStyles = (pathArray) => {
     const classes = [...CELL_WALLS];
@@ -37,8 +41,29 @@ export default function Maze({ mazeWidth, mazeHeight, initMaze }) {
     return classes.join(' ');
   }
 
+  const calculateBorderSize = useCallback(() => {
+    const maxDimension = Math.max(mazeHeight, mazeWidth);
+    const minScreenDimension = Math.min(windowSize.width, windowSize.height);
+
+    const borderSize = (minScreenDimension * 0.8) / 8 / maxDimension;
+    console.log(borderSize)
+
+    if (borderSize < 5) {
+      return " border-1";
+    } else if (borderSize < 10) {
+      return " border-5";
+    } else if (borderSize < 15) {
+      return " border-10";
+    } else if (borderSize < 20) {
+      return " border-15";
+    } else if (borderSize > 19) {
+      return " border-20";
+    }
+    return borderSize;
+  }, [mazeHeight, mazeWidth, windowSize]);
+
   return (
-    <div className="maze">
+    <div ref={mazeRef} className={"maze" + calculateBorderSize()}>
       {getMazeRows()}
     </div>
   )

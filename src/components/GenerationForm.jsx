@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import '../styles/GenerationForm.css';
 import { clamp } from "../scripts/utils";
-import TEST_MAZE from "../test-data/testMaze5x5.json";
+import TEST_MAZE from "../test-data/testMaze51x51.json";
 
 const DEFAULT_MAZE_DIMENSION = 5;
 const MIN_MAZE_DIMENSION = 4;
@@ -21,7 +21,7 @@ export default function GenerationForm({ handleLoadingNewMaze }) {
 
     // TODO: Fetch maze with dimensions
     // THEN: call handleLoadingNewMaze(), passing maze data
-    handleLoadingNewMaze(5, 5, TEST_MAZE);
+    handleLoadingNewMaze(51, 51, TEST_MAZE);
   }
 
   return (

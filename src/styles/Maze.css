@@ -2,6 +2,26 @@
   --border-width: 1px;
   --negative-border-width: -1px;
 }
+.border-1 {
+  --border-width: 1px;
+  --negative-border-width: -1px;
+}
+.border-5 {
+  --border-width: 5px;
+  --negative-border-width: -5px;
+}
+.border-10 {
+  --border-width: 10px;
+  --negative-border-width: -10px;
+}
+.border-15 {
+  --border-width: 15px;
+  --negative-border-width: -15px;
+}
+.border-20 {
+  --border-width: 20px;
+  --negative-border-width: -20px;
+}
 
 .maze {
   border: var(--border-width) white solid;
