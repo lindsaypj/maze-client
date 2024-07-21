@@ -6,6 +6,7 @@ import { solveMazeRequest } from './scripts/requests';
 
 import './styles/App.css';
 
+const DEV = true;
 
 function App() {
   const [initMaze, setInitMaze] = useState();
