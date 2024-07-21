@@ -25,6 +25,11 @@
   display: inline-block;
   width: 100%;
 }
+@media screen and (min-aspect-ratio: 5/4) {
+  .maze-container {
+    align-self: center;
+  }
+}
 
 @media screen and (min-aspect-ratio: 5/4) {
   .App {

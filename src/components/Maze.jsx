@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import useWindowSize from "../hooks/useWindowSize";
 
 import "../styles/Maze.css";
@@ -9,6 +9,7 @@ const CELL_WALLS = ['cell-n', 'cell-e', 'cell-s', 'cell-w'];
 
 export default function Maze({ mazeWidth, mazeHeight, initMaze, mazePath, solved }) {
   const windowSize = useWindowSize();
+  const mazeRef = useRef();
 
   const getCellStyles = useCallback((pathArray, index) => {
     const classes = [...CELL_WALLS];
@@ -37,6 +38,12 @@ export default function Maze({ mazeWidth, mazeHeight, initMaze, mazePath, solved
         </div>
       )
     }
+
+    // Apply aspect ratio
+    if (mazeRef.current) {
+      mazeRef.current.style.aspectRatio = mazeWidth+'/'+mazeHeight;
+    }
+    
     return rows;
   }, [mazeHeight, mazeWidth, initMaze, getCellStyles]);
 
@@ -60,7 +67,7 @@ export default function Maze({ mazeWidth, mazeHeight, initMaze, mazePath, solved
   }, [mazeHeight, mazeWidth, windowSize]);
 
   return (
-    <div className={"maze" + calculateBorderSize()}>
+    <div ref={mazeRef} className={"maze" + calculateBorderSize()}>
       {getMazeRows()}
     </div>
   )

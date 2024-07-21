@@ -27,15 +27,11 @@
   border: var(--border-width) white solid;
   padding: var(--border-width);
   margin-block: 2rem;
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
-}
-@media screen and (min-aspect-ratio: 5/4) {
-  .maze {
-    margin-inline: auto;
-    max-width: 80vh;
-    max-height: 80vw;
-  }
+  max-width: 80vh;
+  max-height: min(80vw, 80vh);
 }
 
 .maze-row {
