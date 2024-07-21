@@ -26,6 +26,10 @@ function App() {
     const requestMaze = JSON.stringify(initMaze);
     const requestWidth = mazeWidth;
     const requestHeight = mazeHeight;
+    
+    if (!requestMaze || !requestWidth || !requestHeight) {
+      return;
+    }
 
     solveMazeRequest(requestWidth, requestHeight, requestMaze)
       .then(function (response) {
