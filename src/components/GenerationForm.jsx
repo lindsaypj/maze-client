@@ -15,10 +15,13 @@ export default function GenerationForm({ handleLoadingNewMaze, solveMazeCallback
   const [mazeHeightInput, setMazeHeightInput] = useState(DEFAULT_MAZE_DIMENSION);
   const [mazeWidthInput, setMazeWidthInput] = useState(DEFAULT_MAZE_DIMENSION);
 
-  const handleInputChange = (event) => {
+  const handleWidthBlur = (event) => {
+    const nextSize = clamp(MIN_MAZE_DIMENSION, MAX_MAZE_DIMENSION, event.target.value);
+    setMazeWidthInput(nextSize);
+  }
+  const handleHeightBlur = (event) => {
     const nextSize = clamp(MIN_MAZE_DIMENSION, MAX_MAZE_DIMENSION, event.target.value);
     setMazeHeightInput(nextSize);
-    setMazeWidthInput(nextSize);
   }
 
   const generateMaze = () => {
@@ -52,8 +55,8 @@ export default function GenerationForm({ handleLoadingNewMaze, solveMazeCallback
             value={mazeWidthInput}
             min={MIN_MAZE_DIMENSION}
             max={MAX_MAZE_DIMENSION}
-            onChange={handleInputChange}
-            onBlur={handleInputChange}
+            onChange={(event) => setMazeWidthInput(event.target.value)}
+            onBlur={handleWidthBlur}
           />
         </div>
 
@@ -69,8 +72,8 @@ export default function GenerationForm({ handleLoadingNewMaze, solveMazeCallback
             value={mazeHeightInput}
             min={MIN_MAZE_DIMENSION}
             max={MAX_MAZE_DIMENSION}
-            onChange={handleInputChange}
-            onBlur={handleInputChange}
+            onChange={(event) => setMazeHeightInput(event.target.value)}
+            onBlur={handleHeightBlur}
           />
         </div>
       </div>
