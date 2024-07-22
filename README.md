@@ -4,14 +4,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Deployment
 
-Demo: [Maze Client](http://maze-client.s3-website.us-east-2.amazonaws.com/)
+Demo: [Maze Client](http://maze-client.s3-website.us-east-2.amazonaws.com/) ([Deployed Code](https://github.com/lindsaypj/maze-client/tree/1f4b4fe325666d636afeec7a5950c0f982675a8c) from 7/19/24)
 
 API: [http://18.191.133.226:8000/](http://18.191.133.226:8000/)
 
 ## Overview
 This application interfaces with [Maze API](https://github.com/lindsaypj/maze-api).
 
-**Generate**: You can randomly generate mazes from 4x4 to 100x100. NOTE: For now, mazes are locked to an aspect ratio of 1/1.
+**Generate**: You can randomly generate mazes from 4x4 to 100x100.
 
 **Solve**: After generating a maze, you can solve it and the path will be rendered.
 
